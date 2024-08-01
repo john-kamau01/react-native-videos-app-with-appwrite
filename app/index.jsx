@@ -1,18 +1,57 @@
-import { Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { Redirect, router } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { images } from "../constants";
+import CustomButton from "../components/CustomButton";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-slate-950 p-5">
-      <Text className="font-pregular text-6xl text-slate-100 pb-2">Aora!</Text>
-      <Text className="font-plight text-lg text-slate-100 text-center">
-        Welcome to Aora! The best video sharing App
-      </Text>
-      <Link href="/home" style={{ color: "white" }}>
-        Home
-      </Link>
-    </View>
+    <SafeAreaView className="bg-primary h-full">
+      <ScrollView contentContainerStyle={{ height: "100%" }}>
+        <View className="w-full h-full items-center justify-center px-4">
+          <Image
+            source={images.logo}
+            className="w-[130px] h-[84px]"
+            resizeMode="contain"
+          />
+
+          <Image
+            source={images.cards}
+            className="max-w-[380px] w-full h-[300px]"
+            resizeMode="contain"
+          />
+
+          <View className="relative mt-5">
+            <Text className="text-3xl text-white font-pbold text-center">
+              Discover Endless Possibilities With{" "}
+              <Text className="text-secondary-200">Aora!</Text>
+            </Text>
+
+            <Image
+              source={images.path}
+              className="w-[136px] h-[15px] absolute -bottom-2 -right-8"
+              resizeMode="contain"
+            />
+          </View>
+
+          <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
+            Where creativity meets innovation: embark on a journey of limitless
+            explorations with Aora
+          </Text>
+
+          <CustomButton
+            title="Continue with Email"
+            handlePress={() => router.push("/sign-in")}
+            containerStyles="w-full mt-7"
+          />
+        </View>
+      </ScrollView>
+
+      <StatusBar backgroundColor="#161622" style="light" />
+    </SafeAreaView>
   );
 };
 
